@@ -1222,11 +1222,17 @@ var Lightbox = function (_Component) {
 			    showThumbnails = _props2.showThumbnails,
 			    width = _props2.width,
 			    images = _props2.images;
-			var imageLoaded = this.state.imageLoaded;
-			var _images$currentImage$ = images[currentImage].type,
-			    type = _images$currentImage$ === undefined ? '' : _images$currentImage$;
 
-			var customStyles = type !== 'image' ? { width: '100%', maxWidth: width } : {};
+
+			var customStyles = {};
+			var imageLoaded = this.state.imageLoaded;
+
+
+			if (images || images.length) {
+				var type = images[currentImage].type;
+
+				customStyles = type !== 'image' ? { width: '100%', maxWidth: width } : {};
+			}
 
 			if (!isOpen) return React__default.createElement('span', { key: 'closed' });
 
