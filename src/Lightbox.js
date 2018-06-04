@@ -217,8 +217,8 @@ class Lightbox extends Component {
 		} = this.props;
 
 		const { imageLoaded } = this.state;
-    const image = images[currentImage];
-    const customStyles = image.type !== 'image' ? { width: '100%', maxWidth: width } : {};
+    const { type = ''} = images[currentImage];
+    const customStyles = type !== 'image' ? { width: '100%', maxWidth: width } : {};
 
 		if (!isOpen) return <span key="closed" />;
 
