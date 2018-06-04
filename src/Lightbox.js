@@ -218,7 +218,7 @@ class Lightbox extends Component {
 
 		const { imageLoaded } = this.state;
     const image = images[currentImage];
-    const videoStyle = image.type === 'video' ? {width: '100%', maxWidth: width} : {};
+    const customStyles = image.type !== 'image' ? { width: '100%', maxWidth: width } : {};
 
 		if (!isOpen) return <span key="closed" />;
 
@@ -233,7 +233,7 @@ class Lightbox extends Component {
 				onClick={backdropClosesModal && this.closeBackdrop}
 				onTouchEnd={backdropClosesModal && this.closeBackdrop}
 			>
-				<div style={videoStyle}>
+				<div style={customStyles}>
 					<div className={css(this.classes.content)} style={{ marginBottom: offsetThumbnails, maxWidth: width }}>
 						{imageLoaded && this.renderHeader()}
 						{this.renderImages()}
