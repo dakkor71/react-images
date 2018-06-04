@@ -1223,9 +1223,10 @@ var Lightbox = function (_Component) {
 			    width = _props2.width,
 			    images = _props2.images;
 			var imageLoaded = this.state.imageLoaded;
+			var _images$currentImage$ = images[currentImage].type,
+			    type = _images$currentImage$ === undefined ? '' : _images$currentImage$;
 
-			var image = images[currentImage];
-			var videoStyle = image.type === 'video' ? { width: '100%', maxWidth: width } : {};
+			var customStyles = type !== 'image' ? { width: '100%', maxWidth: width } : {};
 
 			if (!isOpen) return React__default.createElement('span', { key: 'closed' });
 
@@ -1243,7 +1244,7 @@ var Lightbox = function (_Component) {
 				},
 				React__default.createElement(
 					'div',
-					{ style: videoStyle },
+					{ style: customStyles },
 					React__default.createElement(
 						'div',
 						{ className: aphrodite.css(this.classes.content), style: { marginBottom: offsetThumbnails, maxWidth: width } },
