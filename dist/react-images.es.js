@@ -1226,7 +1226,7 @@ var Lightbox = function (_Component) {
 			var imageLoaded = this.state.imageLoaded;
 
 
-			if (images || images.length) {
+			if (images.length && images[currentImage]) {
 				var type = images[currentImage].type;
 
 				customStyles = type !== 'image' ? { width: '100%', maxWidth: width } : {};

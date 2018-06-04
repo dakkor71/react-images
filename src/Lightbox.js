@@ -219,7 +219,7 @@ class Lightbox extends Component {
     let customStyles = {};
 		const { imageLoaded } = this.state;
 
-    if (images || images.length) {
+    if(images.length && images[currentImage]) {
       const { type } = images[currentImage];
       customStyles = type !== 'image' ? { width: '100%', maxWidth: width } : {};
     }
