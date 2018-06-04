@@ -1214,12 +1214,16 @@ var Lightbox = function (_Component) {
 		key: 'renderDialog',
 		value: function renderDialog() {
 			var _props2 = this.props,
+			    currentImage = _props2.currentImage,
 			    backdropClosesModal = _props2.backdropClosesModal,
 			    isOpen = _props2.isOpen,
 			    showThumbnails = _props2.showThumbnails,
-			    width = _props2.width;
+			    width = _props2.width,
+			    images = _props2.images;
 			var imageLoaded = this.state.imageLoaded;
 
+			var image = images[currentImage];
+			var videoStyle = image.type === 'video' ? { width: '100%', maxWidth: width } : {};
 
 			if (!isOpen) return React.createElement('span', { key: 'closed' });
 
@@ -1237,7 +1241,7 @@ var Lightbox = function (_Component) {
 				},
 				React.createElement(
 					'div',
-					null,
+					{ style: videoStyle },
 					React.createElement(
 						'div',
 						{ className: css(this.classes.content), style: { marginBottom: offsetThumbnails, maxWidth: width } },
@@ -1267,11 +1271,21 @@ var Lightbox = function (_Component) {
 			if (!images || !images.length) return null;
 
 			var image = images[currentImage];
+			var _image$customContaine = image.customContainer,
+			    CustomContainer = _image$customContaine === undefined ? null : _image$customContaine;
+
 			var sourceSet = normalizeSourceSet(image);
 			var sizes = sourceSet ? '100vw' : null;
-
 			var thumbnailsSize = showThumbnails ? this.theme.thumbnail.size : 0;
 			var heightOffset = this.theme.header.height + this.theme.footer.height + thumbnailsSize + this.theme.container.gutter.vertical + 'px';
+
+			if (CustomContainer) {
+				return React.createElement(
+					'figure',
+					{ className: css(this.classes.figure) },
+					React.createElement(CustomContainer, image)
+				);
+			}
 
 			return React.createElement(
 				'figure',
